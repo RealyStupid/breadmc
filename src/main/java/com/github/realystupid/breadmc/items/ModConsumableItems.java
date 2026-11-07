@@ -14,15 +14,14 @@ public class ModConsumableItems {
     public static final DeferredRegister.Items CONSUMABLE_ITEMS = DeferredRegister.createItems(BreadMC.MODID);
 
     // add an item to the list
-    public static final DeferredItem<Item> BREAD_SLICE = CONSUMABLE_ITEMS.register("bread_slice", 
-        () -> new Item(
-            new Item.Properties().food(
-                new FoodProperties.Builder()
-                .nutrition(4)
+    public static final DeferredItem<Item> BREAD_SLICE = CONSUMABLE_ITEMS.registerSimpleItem(
+        "bread_slice",
+        props -> props.food(
+            new FoodProperties.Builder()
+                .nutrition(2) // 1 full drumstick
                 .saturationModifier(0.3f)
                 .alwaysEdible()
                 .build()
-            )
         )
     );
 
