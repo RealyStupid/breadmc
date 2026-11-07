@@ -2,6 +2,7 @@ package com.github.realystupid.breadmc;
 
 import org.slf4j.Logger;
 
+import com.github.realystupid.breadmc.attachment.ModAttachments;
 import com.github.realystupid.breadmc.items.ModConsumableItems;
 import com.mojang.logging.LogUtils;
 
@@ -24,6 +25,8 @@ public class BreadMC {
         LOGGER.info("Starting Up the BreadMC mod!\n");
 
         ModConsumableItems.register(modEventBus);
+
+        ModAttachments.register(modEventBus);
 
         LOGGER.info("Mod has fully loaded!");
         LOGGER.info("_____________________________________________________________________");
