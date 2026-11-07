@@ -38,37 +38,21 @@ public class ModCLientEvents {
 
                 // This NeoForge version uses guiGraphics.text(...), and its color argument is ARGB.
                 // The leading FF makes each color fully opaque; without it the text is invisible.
-                int x = 265;
-                int y = 70;
-
-                String serverText = "~You Are Playing BreadMC~";
-                String seperator =  "-------------------------";
-                String moneyText = "Money: $" + money;
-
-                // Find the widest string to size the box
-                int textWidth = Math.max(
-                    minecraft.font.width(serverText), 
-                    Math.max(
-                        minecraft.font.width(seperator), 
-                        minecraft.font.width(moneyText)
-                    )
-                );
-
-                // Draw background box (using a dynamic height based on 3 lines + padding)
-                int padding = 6;
-                int lineHeight = 7; // 9px font + spacing
-                int boxHeight = (lineHeight * 3) + (padding * 2);
                 
-                guiGraphics.fill(x - padding, y - padding, x + textWidth + padding, y - padding + boxHeight, 0x99000000);
+                // Build your HUD dynamically line-by-line!
+                HudBuilder hud = new HudBuilder()
+                    .padding(6)
+                    .lineHeight(10);
 
-                // 1. Center serverText horizontally inside the box width
-                int serverTextX = x + (textWidth - minecraft.font.width(serverText)) / 2;
-                guiGraphics.text(minecraft.font, serverText, serverTextX, y, 0xCCCE9532);
+                hud.addCenteredLine("You Are Playing BreadMC!", 0xCCCE9532);
+                hud.addCenteredLine("------------------------", 0xff0027c4);
+                hud.addLine("Money: $" + money, 0xFF55FF55);
+                
+                // Want to add a new line later? Just add it here:
+                // hud.addLine("Bread Eaten: 5", 0xFFFF555);
 
-                int seperatorX = x + (textWidth - minecraft.font.width(seperator)) / 2;
-                guiGraphics.text(minecraft.font, seperator, seperatorX, y + lineHeight, 0xff0027c4);
-
-                guiGraphics.text(minecraft.font, moneyText, x, y + (lineHeight * 2), 0xFF55FF55);
+                // Render it out to the screen on the right side
+                hud.renderRightAligned(guiGraphics, minecraft, 0);
             }
         );
     }
