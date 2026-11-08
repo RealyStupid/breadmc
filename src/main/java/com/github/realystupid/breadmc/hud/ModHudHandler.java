@@ -39,20 +39,28 @@ public class ModHudHandler {
                 // same for the count
                 int count = minecraft.player.getData(ModAttachments.BREAD_COUNT);
 
+                int keyColor = 0xff616161;
+
                 // This NeoForge version uses guiGraphics.text(...), and its color argument is ARGB.
                 // The leading FF makes each color fully opaque; without it the text is invisible.
                 
-                // Build your HUD dynamically line-by-line!
                 ModHudBuilder hud = new ModHudBuilder()
                     .padding(6)
                     .lineHeight(10);
 
                 hud.addCenteredLine("Welcome to BreadMC!", 0xCCCE9532);
-                hud.addCenteredLine("-------------------", 0xff0027c4);
-                hud.addLine("Money: $" + money, 0xFF55FF55);
+                hud.addCenteredLine("-------------------", 0xff0027c4, 0, -4);
                 
-                // Want to add a new line later? Just add it here:
-                hud.addLine("Bread Eaten: " + count, 0xffa1a1a1);
+                hud.startGroup(0, -5); // Shifts everything inside this group 4 pixels right
+                {
+                    hud.addKeyValueLine("Money: ", String.valueOf(money), keyColor, 0xFF55FF55, false);
+                    hud.addKeyValueLine("Bread Eaten: ", String.valueOf(count), keyColor, 0xffa1a1a1, false);
+                    // hud.addLine("Money: $" + money, 0xFF55FF55);
+                    // hud.addLine("Bread Eaten: " + count, 0xffa1a1a1); // Nudges just this line down by 2 pixels extra
+                }
+                hud.endGroup();
+
+                hud.addKeyValueLine("Role: ", "temporary", 0xff616161, 0xff818181, true);
 
                 // Render it out to the screen on the right side
                 hud.renderRightAligned(guiGraphics, minecraft, 0);
