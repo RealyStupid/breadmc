@@ -32,7 +32,13 @@ public class ModEventBusEvents {
                     // Save it back to the player
                     player.setData(ModAttachments.PLAYER_MONEY, newMoney);
 
-                    BreadMC.LOGGER.info("Player " + player.getName().getString() + " ate bread! Total Money: $" + newMoney);
+                    // get the current bread count and add 1
+                    int currentCount = player.getData(ModAttachments.BREAD_COUNT);
+                    int newCount = currentCount + 1;
+                    
+                    player.setData(ModAttachments.BREAD_COUNT, newCount);
+
+                    BreadMC.LOGGER.info("Player " + player.getName().getString() + " ate bread! Total Money: $" + newMoney + " and the total count consumed is: " + newCount);
                 }
             }
         }
