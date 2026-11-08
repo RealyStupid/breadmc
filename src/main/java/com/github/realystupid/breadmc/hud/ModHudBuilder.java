@@ -1,4 +1,4 @@
-package com.github.realystupid.breadmc.events;
+package com.github.realystupid.breadmc.hud;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 
-public class HudBuilder {
+public class ModHudBuilder {
 
     // internal class to each lines data
     private static class HudLine {
@@ -26,25 +26,25 @@ public class HudBuilder {
     private int lineHeight = 10;
 
     // Set custom padding if you want
-    public HudBuilder padding(int padding) {
+    public ModHudBuilder padding(int padding) {
         this.padding = padding;
         return this;
     }
 
     // Set line height/spacing
-    public HudBuilder lineHeight(int lineHeight) {
+    public ModHudBuilder lineHeight(int lineHeight) {
         this.lineHeight = lineHeight;
         return this;
     }
 
     // Add a left-aligned line
-    public HudBuilder addLine(String text, int color) {
+    public ModHudBuilder addLine(String text, int color) {
         lines.add(new HudLine(text, color, false));
         return this;
     }
 
     // Add a centered line
-    public HudBuilder addCenteredLine(String text, int color) {
+    public ModHudBuilder addCenteredLine(String text, int color) {
         lines.add(new HudLine(text, color, true));
         return this;
     }
