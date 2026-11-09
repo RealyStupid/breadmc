@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "breadmc:item/bread_slice"
+  }
+}
