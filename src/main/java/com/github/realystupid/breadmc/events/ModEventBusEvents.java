@@ -26,15 +26,15 @@ public class ModEventBusEvents {
                 if(! player.level().isClientSide()){
 
                     // get the current money and add 10 bucks
-                    int currentMoney = player.getData(ModAttachments.PLAYER_MONEY);
-                    int newMoney = currentMoney + 10;
+                    Long currentMoney = player.getData(ModAttachments.PLAYER_MONEY);
+                    Long newMoney = currentMoney + 10;
 
                     // Save it back to the player
                     player.setData(ModAttachments.PLAYER_MONEY, newMoney);
 
                     // get the current bread count and add 1
-                    int currentCount = player.getData(ModAttachments.BREAD_COUNT);
-                    int newCount = currentCount + 1;
+                    Long currentCount = player.getData(ModAttachments.BREAD_COUNT);
+                    Long newCount = currentCount + 1;
                     
                     player.setData(ModAttachments.BREAD_COUNT, newCount);
 

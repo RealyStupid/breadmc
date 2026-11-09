@@ -15,7 +15,7 @@ public class ModRoles {
     }
 
     // loops though the roles and finds the highest tier the player qualifies for
-    public static Role getRoleForBreadCount(int breadCount){
+    public static Role getRoleForBreadCount(Long breadCount){
         Role currentRole = ROLES.get(0); // default fallback obv
         
         for(Role role : ROLES){

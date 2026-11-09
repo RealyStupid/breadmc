@@ -22,7 +22,7 @@ import net.neoforged.neoforge.event.RegisterCommandsEvent;
 @EventBusSubscriber(modid = BreadMC.MODID)
 public class ModCommand {
     // Simple data holder for our backup cache
-    private record PlayerBackup(int money, int breadCount) {}
+    private record PlayerBackup(Long money, Long breadCount) {}
     
     // Stores the last cleared stats per player UUID so admins can undo it
     private static final Map<UUID, PlayerBackup> BACKUP_CACHE = new HashMap<>();
@@ -73,7 +73,7 @@ public class ModCommand {
                                 int amount = IntegerArgumentType.getInteger(context, "amount");
 
                                 // get the players current money
-                                int currentMoney = targetPlayer.getData(ModAttachments.PLAYER_MONEY);
+                                Long currentMoney = targetPlayer.getData(ModAttachments.PLAYER_MONEY);
 
                                 // set the money
                                 targetPlayer.setData(ModAttachments.PLAYER_MONEY, currentMoney + amount);
@@ -106,12 +106,12 @@ public class ModCommand {
                             Player targetPlayer = EntityArgument.getPlayer(context, "target");
 
                             //Save backup data before wiping!
-                            int oldMoney = targetPlayer.getData(ModAttachments.PLAYER_MONEY);
-                            int oldBread = targetPlayer.getData(ModAttachments.BREAD_COUNT);
+                            Long oldMoney = targetPlayer.getData(ModAttachments.PLAYER_MONEY);
+                            Long oldBread = targetPlayer.getData(ModAttachments.BREAD_COUNT);
                             BACKUP_CACHE.put(targetPlayer.getUUID(), new PlayerBackup(oldMoney, oldBread));
 
-                            targetPlayer.setData(ModAttachments.PLAYER_MONEY, 0);
-                            targetPlayer.setData(ModAttachments.BREAD_COUNT, 0);
+                            targetPlayer.setData(ModAttachments.PLAYER_MONEY, 0L);
+                            targetPlayer.setData(ModAttachments.BREAD_COUNT, 0L);
 
                             context.getSource().sendSuccess(
                                 () -> Component.literal("§cCleared data for " + targetPlayer.getName().getString() + ". (Use '/stats undo " + targetPlayer.getName().getString() + "' to revert)"),
@@ -166,8 +166,8 @@ public class ModCommand {
     }
 
     private static void sendStatsMessage(CommandSourceStack source, Player target) {
-        int money = target.getData(ModAttachments.PLAYER_MONEY);
-        int count = target.getData(ModAttachments.BREAD_COUNT);
+        Long money = target.getData(ModAttachments.PLAYER_MONEY);
+        Long count = target.getData(ModAttachments.BREAD_COUNT);
         
         source.sendSuccess(
             () -> Component.literal("§6[BreadMC] §e" + target.getName().getString() + " has $" + money + " and ate " + count + " bread!"),

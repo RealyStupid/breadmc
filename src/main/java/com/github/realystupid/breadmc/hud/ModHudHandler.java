@@ -36,10 +36,10 @@ public class ModHudHandler {
 
                 // Pull this player's money from the custom attachment we registered earlier.
                 // The attachment stores data per-player, so each client sees its own saved value.
-                int money = minecraft.player.getData(ModAttachments.PLAYER_MONEY);
+                Long money = minecraft.player.getData(ModAttachments.PLAYER_MONEY);
 
                 // same for the count
-                int count = minecraft.player.getData(ModAttachments.BREAD_COUNT);
+                Long count = minecraft.player.getData(ModAttachments.BREAD_COUNT);
 
                 int keyColor = 0xff616161;
 
