@@ -59,8 +59,8 @@ public class ModHudHandler {
                 hud.startGroup(0, -5); // Shifts everything inside this group 4 pixels right
                 {
                     hud.addCenteredLine(playerRole.getName(), playerRole.getColor());
-                    hud.addKeyValueLine("Money: ", String.valueOf(money), keyColor, 0xFF55FF55, false);
-                    hud.addKeyValueLine("Bread Eaten: ", String.valueOf(count), keyColor, 0xffa1a1a1, false);
+                    hud.addKeyValueLine("Money: ", "$" + String.valueOf(money), keyColor, 0xFF55FF55, false);
+                    hud.addKeyValueLine("Bread Eaten: ", "#" + String.valueOf(count), keyColor, 0xffa1a1a1, false);
                 }
                 hud.endGroup();
 
